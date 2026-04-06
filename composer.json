@@ -1,6 +1,6 @@
 {
     "name": "scorninpc/slim-smarty-view",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "type": "library",
     "description": "Slim Framework 4 view helper built on top of the Smarty templating component",
     "keywords": ["slim","framework","view","template","smarty","slim 4"],
@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": ">=8.1"
         "smarty/smarty": "^4.0",
         "slim/slim": "^4.0",
         "php-di/php-di": "^6.3"
