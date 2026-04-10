@@ -1,9 +1,9 @@
 <?php
+
 namespace Slim\Views;
 
 use Psr\Http\Message\UriInterface;
 use Slim\Interfaces\RouteParserInterface;
-use Smarty_Internal_Template;
 
 class SmartyPlugins
 {
@@ -33,10 +33,10 @@ class SmartyPlugins
      * Get the url for a named route
      *
      * @param array $params
-     * @param Smarty_Internal_Template $template
+     * @param \Smarty\Template $template
      * @return string
      */
-    public function urlFor(array $params, Smarty_Internal_Template $template): string
+    public function urlFor(array $params, \Smarty\Template $template): string
     {
         return $this->routeParser->urlFor($params['name'], $params['data'] ?? [], $params['queryParams'] ?? []);
     }
@@ -45,20 +45,20 @@ class SmartyPlugins
      * Get the full url for a named route
      *
      * @param array $params
-     * @param Smarty_Internal_Template $template
+     * @param \Smarty\Template $template
      * @return string
      */
-    public function fullUrlFor(array $params, Smarty_Internal_Template $template): string
+    public function fullUrlFor(array $params, \Smarty\Template $template): string
     {
         return $this->routeParser->fullUrlFor($this->uri, $params['name'], $params['data'] ?? [], $params['queryParams'] ?? []);
     }
 
     /**
      * @param array $params
-     * @param Smarty_Internal_Template $template
+     * @param \Smarty\Template $template
      * @return string
      */
-    public function isCurrentUrl(array $params, Smarty_Internal_Template $template): string
+    public function isCurrentUrl(array $params, \Smarty\Template $template): string
     {
         $currentUrl = $this->basePath.$this->uri->getPath();
         $result = $this->routeParser->urlFor($params['name'], $params['data'] ?? []);
@@ -70,10 +70,10 @@ class SmartyPlugins
      * Get current path on given Uri
      *
      * @param array $params
-     * @param Smarty_Internal_Template $template
+     * @param \Smarty\Template $template
      * @return string
      */
-    public function getCurrentUrl(array $params, Smarty_Internal_Template $template): string
+    public function getCurrentUrl(array $params, \Smarty\Template $template): string
     {
         $currentUrl = $this->basePath.$this->uri->getPath();
         $query = $this->uri->getQuery();

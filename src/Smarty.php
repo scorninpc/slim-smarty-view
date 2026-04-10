@@ -8,7 +8,7 @@ use SmartyException;
 /**
  * Smarty View
  *
- * This class is a Slim Framework 5 view helper built on top of the Smarty templating component. 
+ * This class is a Slim Framework 4 view helper built on top of the Smarty templating component. 
  *
  * @link http://www.smarty.net/
  */
@@ -40,18 +40,24 @@ class Smarty implements \ArrayAccess
      */
     public function __construct($options = [])
     {
-        $this->smarty = new \Smarty();
+        $this->smarty = new \Smarty\Smarty();
 
-        $this->smarty->force_compile = $options['force_compile'];
-        $this->smarty->debugging = $options['debugging'];
-        $this->smarty->compile_check = $options['compile_check'];
+        $this->smarty->setForceCompile($options['force_compile']);
+        $this->smarty->setDebugging($options['debugging']);
+
+        if($options['compile_check']) {
+            $this->smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_ON);
+        }
+        else {
+            $this->smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);
+        }
         
-        $this->smarty->cache_dir = $options['cache_dir'];
-        $this->smarty->caching = $options['caching'];
-        $this->smarty->cache_lifetime = $options['cache_lifetime'];
+        $this->smarty->setCacheDir($options['cache_dir']);
+        $this->smarty->setCaching($options['caching']);
+        $this->smarty->setCacheLifetime($options['cache_lifetime']);
 
-        $this->smarty->template_dir = $options['template_dir'];
-        $this->smarty->compile_dir = $options['compile_dir'];
+        $this->smarty->setTemplateDir($options['template_dir']);
+        $this->smarty->setCompileDir($options['compile_dir']);
     }
 
     /********************************************************************************
@@ -121,7 +127,7 @@ class Smarty implements \ArrayAccess
      *
      * @return \Smarty
      */
-    public function getSmarty(): \Smarty
+    public function getSmarty(): \Smarty\Smarty
     {
         return $this->smarty;
     }
