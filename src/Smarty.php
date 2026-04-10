@@ -45,7 +45,7 @@ class Smarty implements \ArrayAccess
         $this->smarty->force_compile = $options['force_compile'];
         $this->smarty->debugging = $options['debugging'];
         $this->smarty->compile_check = $options['compile_check'];
-        
+
         $this->smarty->cache_dir = $options['cache_dir'];
         $this->smarty->caching = $options['caching'];
         $this->smarty->cache_lifetime = $options['cache_lifetime'];
@@ -149,8 +149,12 @@ class Smarty implements \ArrayAccess
      *
      * @return mixed The key's value, or the default value
      */
-    public function offsetGet(mixed $key):mixed
+    #[ReturnTypeWillChange]
+    public function offsetGet($key)
     {
+        if (!$this->offsetExists($key)) {
+            return null;
+        }
         return $this->defaultVariables[$key];
     }
 
@@ -160,7 +164,7 @@ class Smarty implements \ArrayAccess
      * @param string $key The data key
      * @param mixed $value The data value
      */
-    public function offsetSet(mixed $key, mixed $value): void
+    public function offsetSet($key, $value): void
     {
         $this->defaultVariables[$key] = $value;
     }
@@ -170,7 +174,7 @@ class Smarty implements \ArrayAccess
      *
      * @param string $key The data key
      */
-    public function offsetUnset(mixed $key): void
+    public function offsetUnset($key): void
     {
         unset($this->defaultVariables[$key]);
     }
