@@ -8,9 +8,7 @@ use SmartyException;
 /**
  * Smarty View
  *
- * This class is a Slim Framework 3 view helper built
- * on top of the Smarty templating component. Smarty is
- * a PHP component created by New Digital Group, Inc.
+ * This class is a Slim Framework 5 view helper built on top of the Smarty templating component. 
  *
  * @link http://www.smarty.net/
  */
